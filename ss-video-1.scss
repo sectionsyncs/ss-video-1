@@ -1,0 +1,159 @@
+.ss-video-1 {
+    position: relative;
+    isolation: isolate;
+    background-color: rgba(var(--ss-section_background));
+    * {
+        padding: 0;
+        margin: 0;
+        border: none;
+        box-shadow: none;
+        outline: none;
+        min-width: unset;
+        min-height: unset;
+        max-width: unset;
+        max-height: unset;
+        background: unset;
+    }
+    .ss-circle-div {
+        width: 30%;
+        height: auto;
+        aspect-ratio:  1 / 1;
+        border-radius: 50%;
+        border: 50px solid rgba(var(--ss-circle-color));
+        @media screen and (max-width: 1400px) {
+            border: 3vw solid rgba(var(--ss-circle-color));
+        }
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        margin-top: 0;
+        margin-right: 0;
+        z-index: -1;
+    }
+    .ss-inner-container {
+        padding: 80px;
+        width: 1440px;
+        margin: 0 auto;
+        max-width: 100%;
+        display: block;
+        @media screen and (max-width: 750px) {
+            padding: 20px;
+        }
+        .ss-media-container {
+            position: relative;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            @media screen and (max-width: 750px) {
+                border-radius: 10px;
+            }
+            overflow: hidden;
+            background-color: #fff;
+            .ss-icon-wrappers {
+                position: absolute;
+                inset: 0;
+                width: max-content;
+                height: max-content;
+                margin: auto;
+                z-index: 99;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                visibility: visible;
+                opacity: 1;
+                svg {
+                    width: max-content;
+                    height: max-content;
+                    pointer-events: none;
+                    @media screen and (max-width: 750px) {
+                        width: 40px;
+                        height: 40px;
+                    }
+                    .circle_bg {
+                        fill: rgba(var(--ss-icon-bg-color));
+                    }
+                    .circle_color {
+                        fill: rgba(var(--ss-icon-text-color));
+                    }
+                }
+                .ss-pause-icon-wrapper {
+                    position: absolute;
+                    inset: 0;
+                    transition: all 0.2s ease;
+                    margin: auto;
+                    width: max-content;
+                    height: max-content;
+                    opacity: 0;
+                    visibility: hidden;
+                }
+                .ss-play-icon-wrapper {
+                    transition: all 0.2s ease;
+                }
+            }
+            .ss-image-wrapper {
+                display: flex;
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                transition: all 0.2s ease;
+                &::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 14.58%, rgba(56, 56, 56, 0.84) 100%);
+                }
+                svg, img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+            }
+            .ss-video-wrapper {
+                display: flex;
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.2s ease;
+                video {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                    aspect-ratio: 1 / 0.5;
+                }
+            }
+        }
+        &[played] {
+            &:has(.ss-media-container:hover) {
+                .ss-media-container {
+                    .ss-icon-wrappers { 
+                        visibility: visible;
+                        opacity: 1;    
+                    }    
+                }    
+            }
+            .ss-media-container {
+                .ss-icon-wrappers { 
+                    visibility: hidden;
+                    opacity: 0;
+                    .ss-pause-icon-wrapper { 
+                        visibility: visible;
+                        opacity: 1;
+                    }
+                    .ss-play-icon-wrapper {
+                        visibility: hidden;
+                        opacity: 0;
+                    }
+                } 
+
+                .ss-image-wrapper {
+                    visibility: hidden;
+                    opacity: 0;
+                }
+                .ss-video-wrapper {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}

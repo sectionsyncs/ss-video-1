@@ -1,0 +1,137 @@
+{{ 'ss-video-1.css' | asset_url | stylesheet_tag }}
+{% style %}
+    #shopify-section-{{ section.id }} {
+        --ss-section_background: {{ section.settings.section_bg.red }}, {{ section.settings.section_bg.green }}, {{ section.settings.section_bg.blue }}, {{ section.settings.section_bg.alpha }};
+        --ss-circle-color: {{ section.settings.circle_color.red }}, {{ section.settings.circle_color.green }}, {{ section.settings.circle_color.blue }}, {{ section.settings.circle_color.alpha }};
+        --ss-icon-bg-color: {{ section.settings.icon_bg_color.red }}, {{ section.settings.icon_bg_color.green }}, {{ section.settings.icon_bg_color.blue }}, {{ section.settings.icon_bg_color.alpha }};
+        --ss-icon-text-color: {{ section.settings.icon_text_color.red }}, {{ section.settings.icon_text_color.green }}, {{ section.settings.icon_text_color.blue }}, {{ section.settings.icon_text_color.alpha }};
+    }
+{% endstyle %}
+<div class="ss-circle-div">
+
+</div>
+<video-ss-area class="ss-inner-container">
+    <div class="ss-media-container">
+        <button class="ss-icon-wrappers">
+            <div class="ss-play-icon-wrapper">
+                <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="circle_bg" fill-rule="evenodd" clip-rule="evenodd" d="M46.0001 91.8333C71.3129 91.8333 91.8334 71.3128 91.8334 46C91.8334 20.687 71.3129 0.166687 46.0001 0.166687C20.687 0.166687 0.166748 20.687 0.166748 46C0.166748 71.3128 20.687 91.8333 46.0001 91.8333Z" fill="#23A6F0"/>
+                    <path class="circle_color" d="M54.7066 48.7554L40.9394 56.8836C38.7233 58.192 36 56.489 36 53.7948V37.5384C36 34.8443 38.7233 33.1414 40.9394 34.4497L54.7066 42.5779C56.9866 43.9242 56.9866 47.4091 54.7066 48.7554Z" fill="white"/>
+                </svg>
+            </div> 
+            <div class="ss-pause-icon-wrapper">
+                <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path class="circle_bg" d="M91.9268 46.051C91.9268 71.3873 71.3873 91.9268 46.051 91.9268C20.7145 91.9268 0.175171 71.3873 0.175171 46.051C0.175171 20.7145 20.7145 0.175171 46.051 0.175171C71.3873 0.175171 91.9268 20.7145 91.9268 46.051Z" fill="#23A6F0"/>
+                    <path class="circle_bg" d="M33.2502 35.0294C33 35.6335 33 36.3994 33 37.9311V54.3682C33 55.8998 33 56.6658 33.2502 57.27C33.5839 58.0754 34.2239 58.7155 35.0294 59.0491C35.6335 59.2993 36.3994 59.2993 37.9311 59.2993C39.4629 59.2993 40.2287 59.2993 40.8329 59.0491C41.6383 58.7155 42.2784 58.0754 42.6121 57.27C42.8622 56.6658 42.8622 55.8998 42.8622 54.3682V37.9311C42.8622 36.3994 42.8622 35.6335 42.6121 35.0294C42.2784 34.2239 41.6383 33.5839 40.8329 33.2502C40.2287 33 39.4629 33 37.9311 33C36.3994 33 35.6335 33 35.0294 33.2502C34.2239 33.5839 33.5839 34.2239 33.2502 35.0294Z" fill="white"/>
+                    <path class="circle_color" d="M49.6872 35.0294C49.437 35.6335 49.437 36.3994 49.437 37.9311V54.3682C49.437 55.8998 49.437 56.6658 49.6872 57.27C50.0209 58.0754 50.6609 58.7155 51.4663 59.0491C52.0706 59.2993 52.8365 59.2993 54.3681 59.2993C55.8997 59.2993 56.6657 59.2993 57.2699 59.0491C58.0754 58.7155 58.7154 58.0754 59.0491 57.27C59.2993 56.6658 59.2993 55.8998 59.2993 54.3682V37.9311C59.2993 36.3994 59.2993 35.6335 59.0491 35.0294C58.7154 34.2239 58.0754 33.5839 57.2699 33.2502C56.6657 33 55.8997 33 54.3681 33C52.8365 33 52.0706 33 51.4663 33.2502C50.6609 33.5839 50.0209 34.2239 49.6872 35.0294Z" fill="white"/>
+                </svg>
+            </div>
+        </button>
+        <div class="ss-image-wrapper">
+            {% if section.settings.image != blank %}
+                <img src="{{ section.settings.image | img_url: '1000x' }}" alt="{{ section.settings.image.alt }}">
+            {% else %}
+                {{ 'image' | placeholder_svg_tag }}                            
+            {% endif %}
+        </div>
+        <div class="ss-video-wrapper">
+            {% if section.settings.video != blank %}
+                {{
+                    section.settings.video
+                    | video_tag:
+                    image_size: '1100x',
+                    autoplay: false,
+                    loop: false,
+                    controls: false,
+                    muted: false
+                }}
+                {% else %}
+                <video src="https://cdn.shopify.com/videos/c/o/v/fbb140fd46e3429eba459e1549dbbe38.mp4">
+                    
+                </video>
+            {% endif %}
+        </div>
+    </div>
+</video-ss-area>
+<script>
+    if(!customElements.get('video-ss-area')){
+        class VideoSsArea extends HTMLElement {
+            constructor(){
+                super(); 
+                this.video = this.querySelector('video');
+                this.playButton = this.querySelector('.ss-icon-wrappers');
+                console.log(this.video)
+                this.playButton.addEventListener('click', this.playVideo.bind(this));
+                this.video.addEventListener('ended', this.pauseEnded.bind(this));
+            }
+
+            playVideo = () => {
+                this.toggleAttribute('played');
+
+                if(this.hasAttribute('played')){
+                    this.video.play();
+                }else {
+                    this.video.pause();
+                }
+            }
+
+            pauseEnded = () => {
+                this.removeAttribute('played');
+            }
+        }
+
+        customElements.define('video-ss-area', VideoSsArea);
+    }
+
+</script>
+{% schema %}
+{
+    "name": "SS Video 1",
+    "class": "ss-video-1",
+    "presets": [
+        {
+            "name":"SS Video 1"
+        }
+    ],
+    "settings": [
+        {
+            "type": "video",
+            "id": "video",
+            "label": "Video"
+        },
+        {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+        },
+        {
+            "type": "header",
+            "content": "Color Settings"
+        },
+        {
+            "type": "color",
+            "id": "section_bg",
+            "label": "Section Background",
+            "default": "#FFFFFF"
+        },
+        {
+            "type": "color",
+            "id": "circle_color",
+            "label": "Circle Color",
+            "default": "#000000"
+        },
+        {
+            "type": "color",
+            "id": "icon_bg_color",
+            "label": "Icon Background",
+            "default": "#23A6F0"
+        },
+        {
+            "type": "color",
+            "id": "icon_text_color",
+            "label": "Icon Content Color",
+            "default": "#FFFFFF"
+        }
+    ]
+}
+{% endschema %}

@@ -1,0 +1,168 @@
+.ss-video-1 {
+  position: relative;
+  isolation: isolate;
+  background-color: rgba(var(--ss-section_background));
+}
+.ss-video-1 * {
+  padding: 0;
+  margin: 0;
+  border: none;
+  box-shadow: none;
+  outline: none;
+  min-width: unset;
+  min-height: unset;
+  max-width: unset;
+  max-height: unset;
+  background: unset;
+}
+.ss-video-1 .ss-circle-div {
+  width: 30%;
+  height: auto;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border: 50px solid rgba(var(--ss-circle-color));
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  margin-top: 0;
+  margin-right: 0;
+  z-index: -1;
+}
+@media screen and (max-width: 1400px) {
+  .ss-video-1 .ss-circle-div {
+    border: 3vw solid rgba(var(--ss-circle-color));
+  }
+}
+.ss-video-1 .ss-inner-container {
+  padding: 80px;
+  width: 1440px;
+  margin: 0 auto;
+  max-width: 100%;
+  display: block;
+}
+@media screen and (max-width: 750px) {
+  .ss-video-1 .ss-inner-container {
+    padding: 20px;
+  }
+}
+.ss-video-1 .ss-inner-container .ss-media-container {
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #fff;
+}
+@media screen and (max-width: 750px) {
+  .ss-video-1 .ss-inner-container .ss-media-container {
+    border-radius: 10px;
+  }
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers {
+  position: absolute;
+  inset: 0;
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
+  margin: auto;
+  z-index: 99;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  visibility: visible;
+  opacity: 1;
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers svg {
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
+  pointer-events: none;
+}
+@media screen and (max-width: 750px) {
+  .ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers svg {
+    width: 40px;
+    height: 40px;
+  }
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers svg .circle_bg {
+  fill: rgba(var(--ss-icon-bg-color));
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers svg .circle_color {
+  fill: rgba(var(--ss-icon-text-color));
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers .ss-pause-icon-wrapper {
+  position: absolute;
+  inset: 0;
+  transition: all 0.2s ease;
+  margin: auto;
+  width: -moz-max-content;
+  width: max-content;
+  height: -moz-max-content;
+  height: max-content;
+  opacity: 0;
+  visibility: hidden;
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-icon-wrappers .ss-play-icon-wrapper {
+  transition: all 0.2s ease;
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-image-wrapper {
+  display: flex;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.2s ease;
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-image-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 14.58%, rgba(56, 56, 56, 0.84) 100%);
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-image-wrapper svg, .ss-video-1 .ss-inner-container .ss-media-container .ss-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-video-wrapper {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+.ss-video-1 .ss-inner-container .ss-media-container .ss-video-wrapper video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  aspect-ratio: 1/0.5;
+}
+.ss-video-1 .ss-inner-container[played]:has(.ss-media-container:hover) .ss-media-container .ss-icon-wrappers {
+  visibility: visible;
+  opacity: 1;
+}
+.ss-video-1 .ss-inner-container[played] .ss-media-container .ss-icon-wrappers {
+  visibility: hidden;
+  opacity: 0;
+}
+.ss-video-1 .ss-inner-container[played] .ss-media-container .ss-icon-wrappers .ss-pause-icon-wrapper {
+  visibility: visible;
+  opacity: 1;
+}
+.ss-video-1 .ss-inner-container[played] .ss-media-container .ss-icon-wrappers .ss-play-icon-wrapper {
+  visibility: hidden;
+  opacity: 0;
+}
+.ss-video-1 .ss-inner-container[played] .ss-media-container .ss-image-wrapper {
+  visibility: hidden;
+  opacity: 0;
+}
+.ss-video-1 .ss-inner-container[played] .ss-media-container .ss-video-wrapper {
+  visibility: visible;
+  opacity: 1;
+}/*# sourceMappingURL=ss-video-1.css.map */
